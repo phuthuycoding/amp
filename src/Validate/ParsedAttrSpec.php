@@ -107,10 +107,11 @@ class ParsedAttrSpec
             // To deal with cases like srcset="image-1x.png 1x, image-2x.png 2x,image-3x.png 3x, image-4x.png 4x"
             $segments = explode(',', trim($attr_value));
             /** @var string $segment */
+            $trim_key_value = trim($key_value[0]);
             foreach ($segments as $segment) {
                 $key_value = explode(' ', trim($segment));
-                if (!empty(trim($key_value[0]))) {
-                    $maybe_uris[trim($key_value[0])] = 1;
+                if (!empty($trim_key_value)) {
+                    $maybe_uris[$trim_key_value] = 1;
                 }
             }
         }

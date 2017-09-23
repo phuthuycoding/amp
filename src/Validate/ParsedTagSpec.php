@@ -610,8 +610,24 @@ class ParsedTagSpec
      */
     public static function shouldRecordTagspecValidatedTest(TagSpec $tag_spec, array $detail_or_names_to_track)
     {
-        return $tag_spec->mandatory || $tag_spec->unique ||
-        (!empty(self::getTagSpecName($tag_spec)) && isset($detail_or_names_to_track[self::getTagSpecName($tag_spec)]));
+        $key = self::getTagSpecName($tag_spec);
+        // dd(isset($detail_or_names_to_track[$key]));
+        // dd(self::getTagSpecName($tag_spec));
+        if($tag_spec->mandatory){
+            return $tag_spec->mandatory;
+        }
+
+        if($tag_spec->mandatory){
+            return $tag_spec->mandatory;
+        }
+
+        if(!empty($key) && isset($detail_or_names_to_track[$key])){
+            return true;
+        }
+        return false;
+
+
+        // return $tag_spec->mandatory || $tag_spec->unique || (!empty(self::getTagSpecName($tag_spec)) && isset($detail_or_names_to_track[self::getTagSpecName($tag_spec)]));
     }
 
     /**

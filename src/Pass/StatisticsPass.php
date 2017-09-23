@@ -28,7 +28,9 @@ class StatisticsPass extends BasePass
         $html_tag = $this->q->find($this->context->getErrorScope());
 
         // If we don't want statistics or couldn't find tag exit
-        if (empty($this->options['add_stats_html_comment']) || empty($html_tag->count())) {
+        $start_tag = $this->options['add_stats_html_comment'];
+        $count_tag = $html_tag->count();
+        if (empty($start_tag) || empty($count_tag)) {
             return [];
         }
 
