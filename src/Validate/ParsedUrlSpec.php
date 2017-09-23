@@ -84,7 +84,8 @@ class ParsedUrlSpec
      */
     public function validateUrlAndProtocol($adapter, Context $context, $url, TagSpec $tagspec, SValidationResult $validation_result, $line_delta = 0)
     {
-        if (empty(trim($url)) && empty($this->spec->allow_empty)) {
+        $trim_url = trim($url);
+        if (empty($trim_url) && empty($this->spec->allow_empty)) {
             $adapter->missingUrl($context, $tagspec, $validation_result, $line_delta);
             return;
         }

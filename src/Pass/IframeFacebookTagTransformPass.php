@@ -121,13 +121,14 @@ class IframeFacebookTagTransformPass extends BaseFacebookPass
         } else {
             return false;
         }
-
-        if (isset($query_arr['width']) && empty($el->attr('width'))) {
+        $attr_width = $el->attr('width');
+        $attr_height = $el->attr('height');
+        if (isset($query_arr['width']) && empty($attr_width)) {
             // will automatically get copied over the the amp-facebook tag
             $el->attr('width', $query_arr['width']);
         }
 
-        if (isset($query_arr['height']) && empty($el->attr('height'))) {
+        if (isset($query_arr['height']) && empty($attr_height)) {
             // will automatically get copied over the the amp-facebook tag
             $el->attr('height', $query_arr['height']);
         }

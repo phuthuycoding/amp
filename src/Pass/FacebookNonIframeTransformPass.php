@@ -123,9 +123,10 @@ class FacebookNonIframeTransformPass extends BaseFacebookPass
         } else {
             return false;
         }
-
+        $attr_width = $el->attr('width');
+        $attr_height = $el->attr('height');
         // This is going to be responsive. We worry about aspect ratio and not specific numbers
-        if (!empty($el->attr('width')) && !empty($el->attr('height'))) {
+        if (!empty($attr_width) && !empty($attr_height)) {
             // We're very rarely going to be in this if branch as only width is provided and
             // height does not seem to be in non-iframe embeds
             $width = $el->attr('width');
