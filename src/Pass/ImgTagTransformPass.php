@@ -102,6 +102,7 @@ class ImgTagTransformPass extends BasePass
     protected function convertAmpPixel($el, $lineno, $context_string)
     {
         $dom_el = $el->get(0);
+
         $new_dom_el = $dom_el->ownerDocument->createElement('amp-pixel');
         $src = $el->attr('src');
         if (strpos($src, 'http://') !== false) {
@@ -125,7 +126,21 @@ class ImgTagTransformPass extends BasePass
     {
         $dom_el = $el->get(0);
         $new_dom_el = $this->cloneAndRenameDomElement($dom_el, 'amp-img');
+
         $new_el = $el->prev();
+        
+        /**
+         * ManhQuyenTa
+         * Fix data-src
+         *
+         */
+        
+        $data_src = $el->attr('data-src');
+
+        if(!empty($data_src)) {
+            $new_dom_el->setAttribute('src', $data_src);
+        }
+
         $this->setLayoutIfNoLayout($new_el, $this->getLayout($el));
         $this->addActionTaken(new ActionTakenLine('img', ActionTakenType::IMG_CONVERTED, $lineno, $context_string));
         return $new_dom_el;
