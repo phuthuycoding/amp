@@ -356,7 +356,7 @@ class ImgTagTransformPass extends BasePass
         $src = trim($el->attr('src'));
         if (empty($src)) {
             $data_src = trim($el->attr('data-src'));
-            if (!empty($data_src))  {
+            if (empty($data_src))  {
                 return false;
             }
             $src  = $data_src;
